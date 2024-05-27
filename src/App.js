@@ -5,12 +5,14 @@ import ChatWindow from './components/ChatWindow'
 
 function App() {
   return (
+   
     <Router>
       <Routes>
-        <Route exact path="/" component={HomePage} />
-        <Route path='/chat/:id' component={ChatWindow} />
+        <Route path="/" element={<HomePage />} />
+        <Route path='/chat/:id' element={<ChatWindow />} />
       </Routes>
     </Router>
+    
   );
 }
 

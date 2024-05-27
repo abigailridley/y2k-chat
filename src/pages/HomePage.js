@@ -1,10 +1,12 @@
+
+
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 
 const chats = [
-    { id: 1, name: "CharliXCX" },
-    { id: 2, name: "Daniel" }
+    { id: 1, name: "Abi" },
+    { id: 2, name: "Charli" }
 ];
 
 const HomePage = () => (
