@@ -1,13 +1,15 @@
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Message from './Message';
 import AudioMessage from './AudioMessage'
 import VideoMessage from './VideoMessage'
 
+import Message1 from '../assets/audio/Message1.mp3'
+
 const messages = {
     1: [
         { type: 'text', content: "Happy birthday! Love A" },
-        { type: 'audio', content: '/assets/audio/Message1.mp3'}
+        { type: 'audio', content: Message1 },
+        { type: 'text', content: "Did you get my message?"}
       
 ],
 2: [
@@ -15,12 +17,13 @@ const messages = {
 ]
 };
 
-const ChatWindow = () => {
-    const { id } = useParams();
-    const chatMessages = messages[id] || [];
+const ChatWindow = ({ chatId, closeChat }) => {
+    const chatMessages = messages[chatId] || [];
 
     return (
-        <Container>
+        <Modal>
+            <ModalContent>
+                <CloseButton onClick={closeChat}>X</CloseButton>
             {chatMessages.map((msg, index) => (
                 <MessageWrapper key={index}>
                     {msg.type === 'text' && <Message content={msg.content} />}
@@ -28,18 +31,42 @@ const ChatWindow = () => {
                     {msg.type === 'video' && <VideoMessage src={msg.content} />}
                 </MessageWrapper>
             ))}
-        </Container>
+            </ModalContent>
+        </Modal>
     )
 };
 
 export default ChatWindow;
 
-const Container = styled.div`
-  padding: 20px;
-  background-color: #fff;
-  min-height: 100vh;
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 `;
 
 const MessageWrapper = styled.div`

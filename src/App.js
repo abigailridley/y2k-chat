@@ -1,19 +1,25 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from './pages/HomePage';
-import ChatWindow from './components/ChatWindow'
+import React, { useState } from 'react';
+import ChatList from './components/ChatList';
+import ChatWindow from './components/ChatWindow';
 
-function App() {
+const App = () => {
+  const [openChatId, setOpenChatId] = useState(null);
+
+  const openChat = (chatId) => {
+    setOpenChatId(chatId);
+  };
+
+  const closeChat = () => {
+    setOpenChatId(null);
+  };
+
   return (
-   
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path='/chat/:id' element={<ChatWindow />} />
-      </Routes>
-    </Router>
-    
-  );
+    <div>
+      <ChatList openChat={openChat} />
+      {openChatId !== null && <ChatWindow chatId={openChatId} closeChat={closeChat}/>}
+    </div>
+  )
+
 }
 
 export default App;
