@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import ChatList from './components/ChatList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
 import ChatWindow from './components/ChatWindow';
 
 const App = () => {
@@ -14,12 +15,13 @@ const App = () => {
   };
 
   return (
-    <div>
-      <ChatList openChat={openChat} />
-      {openChatId !== null && <ChatWindow chatId={openChatId} closeChat={closeChat}/>}
-    </div>
-  )
-
-}
-
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage openChat={openChat} />} />
+        </Routes>
+        {openChatId !== null && <ChatWindow chatId={openChatId} closeChat={closeChat} />}
+    </Router>
+        );
+        };
+      
 export default App;

@@ -1,19 +1,22 @@
-import styled from "styled-components";
+// ChatList.js
+import React from 'react';
+import styled from 'styled-components';
 
 const chats = [
-    {id: 1, name:"Abi" },
-    { id: 2, name: "Charli"}
+  { id: 1, name: "Abs" },
+  { id: 2, name: "Charli" },
+  // Add more chats as needed
 ];
 
 const ChatList = ({ openChat }) => (
-    <List>
-      {chats.map(chat => (
-        <ChatItem key={chat.id} onClick={() => openChat(chat.id)}>
-          {chat.name}
-        </ChatItem>
-      ))}
-    </List>
-  );
+  <List>
+    {chats.map(chat => (
+      <ChatItem key={chat.id} onClick={() => openChat(chat.id)}>
+        {chat.name}
+      </ChatItem>
+    ))}
+  </List>
+);
 
 export default ChatList;
 
