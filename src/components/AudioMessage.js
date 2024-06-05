@@ -11,8 +11,5 @@ export default AudioMessage;
 
 
 const AudioWrapper = styled.div`
-  padding: 10px;
-  background-color: #fff3cd;
-  border-radius: 10px;
-  max-width: 60%;
+ 
 `;
