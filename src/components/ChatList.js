@@ -1,17 +1,39 @@
 // ChatList.js
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+// import AbsPP from '../assets/img//'
+import CharliPP from '../assets/img/charli-pp.jpg'
+import SamPP from '../assets/img/samcam-pp.jpg'
+import TimPP from '../assets/img/timkey-pp.jpeg'
 
 const chats = [
-  { id: 1, name: "Abs" },
-  { id: 2, name: "Charli" },
-  { id: 3, name: "Daniel" },
-  { id: 4, name: "Wrestler" },
-  { id: 5, name: "Mum" },
-  { id: 6, name: "Mum2" },
+  { id: 1, name: "Abs", img: '../assets/img/abs-pp.jpg', unread: false },
+  { id: 2, name: "Charli", img: CharliPP, unread: true},
+  { id: 3, name: "Tim", img: TimPP, unread: true},
+  { id: 4, name: "SamCam", img: SamPP, unread: true },
 ];
 
-const ChatList = ({ openChat }) => (
+
+const ChatList = ({ openChat }) => {
+const [selectedImage, setSelectedImage] = useState(null);
+const [unreadMessages, setUnreadMessages] = useState(
+  chats.reduce((acc, chat) => ({ ...acc, [chat.id]: chat.unread }), {})
+);
+
+const openImageModal = (img) => {
+  setSelectedImage(img);
+};
+
+const closeImageModal = () => {
+  setSelectedImage(null)
+}
+
+const handleChatClick = (chatId) => {
+  openChat(chatId);
+  setUnreadMessages((prev) => ({ ...prev, [chatId]: false}))
+}
+
+  return (
   <Container>
     <TitleBar>
     <Title>Instant Messenger</Title>
@@ -24,13 +46,23 @@ const ChatList = ({ openChat }) => (
   <List>
     <ContactTitle>My contacts</ContactTitle>
     {chats.map(chat => (
-      <ChatItem key={chat.id} onClick={() => openChat(chat.id)}>
-        {chat.name}
+      <ChatItem key={chat.id} onClick={() => handleChatClick(chat.id)}>
+        <ProfilePic src={chat.img} alt='' onClick={(e) =>{ e.stopPropagation(); openImageModal(chat.img); }}/>
+        <ChatName>{chat.name}</ChatName>
+        {unreadMessages[chat.id] && <NewMessageIndicator>New Message</NewMessageIndicator>}
       </ChatItem>
     ))}
   </List>
+  {selectedImage && (
+    <ImageModal onClick={closeImageModal}>
+      <ModalContent>
+        <ModalImage src={selectedImage} alt="Profile" />
+      </ModalContent>
+    </ImageModal>
+  )}
   </Container>
 );
+}
 
 export default ChatList;
 
@@ -84,7 +116,8 @@ const Button = styled.div`
 `;
 
 const ContactTitle = styled.div`
-
+font-weight: bold;
+  margin-bottom: 10px;
 `
 
 const List = styled.div`
@@ -94,13 +127,62 @@ const List = styled.div`
 `;
 
 const ChatItem = styled.div`
-  padding: 5px;
-  margin: 5px 0;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  cursor: pointer;
+display: flex;
+align-items: center;
+padding: 5px;
+margin: 5px 0;
+background-color: #ffffff;
+border: 1px solid #ddd;
+cursor: pointer;
 
-  &:hover {
-    background-color: #eee;
+&:hover {
+  background-color: #eee;
+}
   }
+`;
+const ProfilePic = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  cursor: pointer;
+`;
+
+const ChatName = styled.div`
+  flex: 1;
+  font-weight: bold;
+`;
+const NewMessageIndicator = styled.div`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 12px;
+  color: #007bff;
+`;
+
+const ImageModal = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  max-width: 80%;
+  max-height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ModalImage = styled.img`
+  max-width: 100%;
+  max-height: 100%;
 `;
