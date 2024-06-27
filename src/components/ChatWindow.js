@@ -9,16 +9,17 @@ import AbsAudio1 from '../assets/audio/abs-audio1.mp3'
 import CharliAudio1 from '../assets/audio/charli-audio1.mp3'
 import SamCamAudio1 from '../assets/audio/samcam-audio1.mp3'
 import TimKeyAudio1 from '../assets/audio/timkey-audio1.mp3'
+import JamesAAudio1 from '../assets/audio/james-hbd.mp3'
 
 const messages = {
   1: [
-    { type: 'text', content: "Happy birthday! Love Abs xxxx", timestamp: "11:05 30/06/2024" },
-    { type: 'audio', content: AbsAudio1, timestamp: "11:07 30/06/2024" },
-    { type: 'text', content: "Did you get my message?", timestamp: "11:09 30/06/2024" }
+    { type: 'text', content: "Happy birthday! Love Abs xxxx", timestamp: "10:02 30/06/2024" },
+    { type: 'audio', content: AbsAudio1, timestamp: "10:12 30/06/2024" },
+    { type: 'text', content: "Did you get my message?", timestamp: "13:49 30/06/2024" }
   ],
   2: [
-    { type: 'text', content: 'Its charli baby', timestamp: "12:05 30/06/2024" },
-    { type: 'audio', content: CharliAudio1, timestamp: "12:07 30/06/2024" }
+    { type: 'text', content: 'Its charli baby', timestamp: "12:25 30/06/2024" },
+    { type: 'audio', content: CharliAudio1, timestamp: "12:27 30/06/2024" }
   ],
   3: [
     { type: 'text', content: 'Mr Campbell informed me it is your birthday!', timestamp: "13:05 30/06/2024" },
@@ -27,6 +28,10 @@ const messages = {
   4: [
     { type: 'audio', content: SamCamAudio1, timestamp: "14:05 30/06/2024" },
     { type: 'text', content: '!!!!!!!!!!!!!!!!!', timestamp: "14:07 30/06/2024" }
+  ],
+  5: [
+    { type: 'audio', content: JamesAAudio1, timestamp: "09:05 30/06/2024" },
+    { type: 'text', content: "And just so you know, the story about the cake wasn't true. I actually ordered it from world-renowned baker, Paul Hollywood. ", timestamp: "09:07 30/06/2024" }
   ]
 };
 
@@ -35,6 +40,7 @@ const chatNames = {
   2: "Charli",
   3: "Tim",
   4: "Sam",
+  5: "James"
 }
 
 const ChatWindow = ({ chatId, closeChat }) => {

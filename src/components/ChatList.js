@@ -5,12 +5,14 @@ import AbsPP from '../assets/img/abs-pp.jpeg'
 import CharliPP from '../assets/img/charli-pp.jpg'
 import SamPP from '../assets/img/samcam-pp.jpg'
 import TimPP from '../assets/img/timkey-pp.jpeg'
+import JamesPP from '../assets/img/james-pp.jpg'
 
 const chats = [
   { id: 1, name: "Abs", img: AbsPP, unread: false },
   { id: 2, name: "Charli", img: CharliPP, unread: true},
   { id: 3, name: "Tim", img: TimPP, unread: true},
   { id: 4, name: "SamCam", img: SamPP, unread: true },
+  { id: 5, name: "James", img: JamesPP, unread: true}
 ];
 
 
