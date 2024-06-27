@@ -1,13 +1,13 @@
 // ChatList.js
 import React, { useState } from 'react';
 import styled from 'styled-components';
-// import AbsPP from '../assets/img//'
+import AbsPP from '../assets/img/abs-pp.jpeg'
 import CharliPP from '../assets/img/charli-pp.jpg'
 import SamPP from '../assets/img/samcam-pp.jpg'
 import TimPP from '../assets/img/timkey-pp.jpeg'
 
 const chats = [
-  { id: 1, name: "Abs", img: '../assets/img/abs-pp.jpg', unread: false },
+  { id: 1, name: "Abs", img: AbsPP, unread: false },
   { id: 2, name: "Charli", img: CharliPP, unread: true},
   { id: 3, name: "Tim", img: TimPP, unread: true},
   { id: 4, name: "SamCam", img: SamPP, unread: true },
@@ -30,8 +30,8 @@ const closeImageModal = () => {
 
 const handleChatClick = (chatId) => {
   openChat(chatId);
-  setUnreadMessages((prev) => ({ ...prev, [chatId]: false}))
-}
+  setUnreadMessages((prev) => ({ ...prev, [chatId]: false }));
+};
 
   return (
   <Container>
@@ -48,8 +48,10 @@ const handleChatClick = (chatId) => {
     {chats.map(chat => (
       <ChatItem key={chat.id} onClick={() => handleChatClick(chat.id)}>
         <ProfilePic src={chat.img} alt='' onClick={(e) =>{ e.stopPropagation(); openImageModal(chat.img); }}/>
-        <ChatName>{chat.name}</ChatName>
-        {unreadMessages[chat.id] && <NewMessageIndicator>New Message</NewMessageIndicator>}
+        <ChatName>
+        {chat.name}
+        {unreadMessages[chat.id] && <NewMessageIndicator>[1]</NewMessageIndicator>}
+        </ChatName>
       </ChatItem>
     ))}
   </List>
@@ -148,13 +150,13 @@ const ProfilePic = styled.img`
 `;
 
 const ChatName = styled.div`
+display: flex;
+  align-items: center;
   flex: 1;
   font-weight: bold;
 `;
 const NewMessageIndicator = styled.div`
-  position: absolute;
-  top: 5px;
-  right: 5px;
+margin-left: 5px;
   font-size: 12px;
   color: #007bff;
 `;
