@@ -49,7 +49,7 @@ const handleChatClick = (chatId) => {
       <ChatItem key={chat.id} onClick={() => handleChatClick(chat.id)}>
         <ProfilePic src={chat.img} alt='' onClick={(e) =>{ e.stopPropagation(); openImageModal(chat.img); }}/>
         <ChatName>{chat.name}</ChatName>
-        {/* {unreadMessages[chat.id] && <NewMessageIndicator>New Message</NewMessageIndicator>} */}
+        {unreadMessages[chat.id] && <NewMessageIndicator>New Message</NewMessageIndicator>}
       </ChatItem>
     ))}
   </List>
